@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Read file into texts and calls.
 It's ok if you don't understand how to read files.
@@ -18,3 +19,19 @@ How many different telephone numbers are there in the records?
 Print a message:
 "There are <count> different telephone numbers in the records."
 """
+
+numbers_set = set()
+
+for text_rec in texts:
+    numbers_set.add(text_rec[0])
+    numbers_set.add(text_rec[1])
+
+for call_rec in calls:
+    numbers_set.add(call_rec[0])
+    numbers_set.add(call_rec[1])
+
+
+
+print(
+f'There are {len(numbers_set)} different telephone numbers in the records.'
+)

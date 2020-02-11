@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Read file into texts and calls.
 It's ok if you don't understand how to read files
@@ -20,3 +21,9 @@ Print a message:
 September 2016.".
 """
 
+max_time_spent = ['phone', 'time']
+
+print(
+f"<telephone number> spent the longest time, <total time> seconds, \
+on the phone during September 2016."
+)

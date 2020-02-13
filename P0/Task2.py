@@ -20,13 +20,13 @@ Print a message:
 "<telephone number> spent the longest time, <total time> seconds, on the phone during 
 September 2016.".
 """
-
+import operator
 
 def get_longest_time(calls):
 
     phones_times = {}
     #First record
-    max_key_value = ( calls[0][0], int(calls[0][3]) )
+    max_key_value = ( "", 0 )
 
     # count = 0
     for rec in calls:
@@ -47,12 +47,11 @@ def get_longest_time(calls):
             phones_times[receiver] = seconds
 
         #Compare and add maximum value to max_key_value
-        if phones_times[caller] > max_key_value[1]:
+        if phones_times[caller] >= max_key_value[1]:
             max_key_value = ( caller, phones_times[caller] )
-        if phones_times[receiver] > max_key_value[1]:
-            max_key_value = ( caller, phones_times[receiver] )
+        if phones_times[receiver] >= max_key_value[1]:
+            max_key_value = ( receiver, phones_times[receiver] )
         
-    
     return {
         "number": max_key_value[0],
         "time": max_key_value[1]

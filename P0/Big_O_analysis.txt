@@ -1,0 +1,30 @@
+Order of algorithms analysis (Big O Notation)
+
+Taks0.py
+Function "get_first_record" iterates once through "texts" list.
+Function "get_last_record" terates once through "calls" list.
+Time complexity: O(n), simplified from O(3n + 6)
+
+Task1.py
+Function "find_unique_num" iterates once through every "texts" and "calls" lists.
+Each iteration performs set.add() with time complexity of O(1).
+Time complexity: O(n)
+
+Task2.py
+Function "get_longest_time" iterates once through "calls" list.
+Time complexity: O(n), simplified from O(11n + 5)
+
+Task3.py
+Function "areas_called" iterates once through "calls" list.
+Time complexity: O(n), simplified from O(6n + 3)
+Also, in order to print results in lexicographic order from "calls"
+list it is performed a python sort operation with
+time complexity of O(n log n)
+
+Task4.py
+Function "find_telemarketers" iterates once through every "calls"
+and "texts" lists. 
+Time complexity: O(n), simplified from O(4n + 5 + O(len(callers)))
+In order to print the results in lexicographic order 
+it is performed a python sort operation with 
+time complexity of O(n log n)

@@ -22,30 +22,55 @@ Print messages:
 "First record of texts, <incoming number> texts <answering number> at time <time>"
 "Last record of calls, <incoming number> calls <answering number> at time <time>, lasting <during> seconds"
 """
-format = '%d-%m-%Y %H:%M:%S'
 
-first_record = [
-    texts[0][0], 
-    texts[0][1], 
-    datetime.strptime(texts[0][2], format)
-    ]
+def get_first_record(texts):
 
-for rec in texts:
-    curr_text_time = datetime.strptime(rec[2], format)
-    if curr_text_time < first_record[2]:
-        first_record = [rec[0], rec[1], curr_text_time]
+    format = '%d-%m-%Y %H:%M:%S'
+    # Randomly chosen first record
+    first_record = [
+        texts[0][0], 
+        texts[0][1], 
+        datetime.strptime(texts[0][2], format)
+        ]
 
-last_call_record = calls[0][:]
-last_call_record[2] = datetime.strptime(last_call_record[2], format)
+    for rec in texts:
+        curr_text_time = datetime.strptime(rec[2], format)
+        if curr_text_time < first_record[2]:
+            first_record = [rec[0], rec[1], curr_text_time]
 
-for rec in calls:
-    curr_call_time = datetime.strptime(rec[2], format)
-    if curr_call_time > last_call_record[2]:
-        last_call_record = [rec[0], rec[1], curr_call_time, rec[3]]
+    #Change type datetime to type str
+    first_record[2] = first_record[2].strftime(format)
+    return first_record
+
+def get_last_record(calls):
+
+    format = '%d-%m-%Y %H:%M:%S'
+
+    last_record = calls[0][:]
+    last_record[2] = datetime.strptime(last_record[2], format)
+
+    for rec in calls:
+        curr_time = datetime.strptime(rec[2], format)
+        if curr_time > last_record[2]:
+            last_record = [rec[0], rec[1], curr_time, rec[3]]
+
+    #Change type datetime to type str
+    last_record[2] = last_record[2].strftime(format)
+    return last_record
+
+#Test
+def test():
+    assert get_first_record(texts) == texts[0] 
+    assert get_last_record(calls) == calls[5212]
+test()
+
+
+first_text_record = get_first_record(texts)
+last_call_record = get_last_record(calls)
 
 print(
-f'First record of texts, {first_record[0]} \
-texts {first_record[1]} at time {first_record[2]}'
+f'First record of texts, {first_text_record[0]} \
+texts {first_text_record[1]} at time {first_text_record[2]}'
 )
 print(
 f'Last record of calls, \

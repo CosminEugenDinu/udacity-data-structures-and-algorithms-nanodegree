@@ -97,51 +97,6 @@ def one_line_item_str(items):
   return str_new_line
 
 
-def test_re(): 
-  bangalore = fixed = mobile = telemarketer = 1
-
-  cases = (
-    ("(080)64765396", (bangalore, fixed, 0, 0)),
-    ("(022)38214945", (0, fixed, 0, 0)),
-    ("78993 89387", (0, 0, mobile, 0)),
-    ("1404787681", (0, 0, 0, telemarketer))
-    )
-
-  def find(num, re_obj):
-    return 1 if re_obj.match(num) else 0
-
-  re_objs = (bangalore_re, fixed_re, mobile_re, telemarketer_re)
-  for case in cases:
-    for i, _ in enumerate(case[1]):
-      assert find(case[0], re_objs[i]) == case[1][i]
-      
-
-  print('All test_re passed!')
-
-def test_get_code():
-  cases = (
-    ("(080)64765396", "(080)", "bangalore"),
-    ("(022)38214945", "(022)", "fixed"),
-    ("78993 89387", "7899", "mobile"),
-    ("98453 94494", "9845", "mobile"),
-    ("1404787681", "140", "telemarketer"),
-    ("(0471)6537077", "(0471)", "fixed"),
-    ("(04344)322628", "(04344)", "fixed")
-    )
-  for case in cases:
-    try:
-      assert get_code(case[0]) == (case[1], case[2])
-    except AssertionError:
-      print(f'test_get_code failed with (case[1], case[2]) {(case[1], case[2])}')
-      return
-
-  print('All test_get_code passed!')
-
-def tests():
-  test_re()
-  test_get_code()
-# tests()
-
 codes_dict = areas_called(bangalore_re, calls)
 codes = codes_dict.keys()
 codes_sorted = sorted(codes)

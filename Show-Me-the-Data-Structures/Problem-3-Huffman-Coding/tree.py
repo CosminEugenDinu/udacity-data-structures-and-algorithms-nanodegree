@@ -96,6 +96,9 @@ class Tree:
             for_print += '\n'
         return for_print
 
+    def __str__(self):
+        return f'T({self.root.value})' 
+
 # t = Tree('A')
 # t.root.left = t.Node('B')
 # t.root.right = t.Node('C')

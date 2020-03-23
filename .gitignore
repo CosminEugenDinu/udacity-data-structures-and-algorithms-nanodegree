@@ -1,4 +1,5 @@
-__MACOSX
+.vscode
+.gitkeep
+*.pyc
 Pipfile*
-.DS_Store
 __*

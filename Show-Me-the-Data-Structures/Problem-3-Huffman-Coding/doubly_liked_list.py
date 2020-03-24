@@ -48,7 +48,6 @@ class DoublyLinkedList:
             node = node.next
         return for_print
 
-
     def is_empty(self):
         return self.size == 0
     

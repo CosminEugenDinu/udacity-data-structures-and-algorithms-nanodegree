@@ -17,56 +17,33 @@ def Q():
         return len(q) == 0
     return enqueue, dequeue, q_empty
 
-# def Stack():
-#     s = []
-#     def push(val):
-#         nonlocal s
-#         s.append(val)
-#     def pop():
-#         nonlocal s
-#         if len(s):
-#             return s.pop()
-#     return push, pop
-
-# class Node:
-#     def __init__(self, value=None):
-#         self.value = value
-#         self.left = None
-#         self.right = None
-
-    # def __repr__(self):
-    #     left = self.left and self.left.value
-    #     right = self.right and self.right.value
-    #     return f'{left}<-{self.value}->{right}'
-    
-    # def __str__(self):
-    #     return f'({self.value})'
 
 class Tree:
-# %%
+
     class Node:
         def __init__(self, value=None):
             self.value = value
             self.left = None
             self.right = None
- 
 
+        def __add__(self, other):
+            return Tree.Node(self.value + other.value)
+ 
         def __lt__(self, other):
             return True if self.value < other.value else False
         def __le__(self, other):
             return True if self.value <= other.value else False
 
         def __repr__(self):
-            return f'{self.value}' 
+            return f'({self.left}<-{self.value}->{self.right})' 
+        def __str__(self):
+            return f'{self.value}'
 
-    # n = Node(1)
-    # n2 = Node(2)
-    # print(n <= n2)
+    def __init__(self, root_node):
+        self.root = root_node
+        # maps leaf_node_ref with an associated value
+        self.leaves_dict = {}
 
-# %%
-    def __init__(self, root_value):
-        self.root = self.Node(root_value)
-    
     def __repr__(self):
         enqueue, dequeue, q_empty = Q()
         levels = []

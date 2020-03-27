@@ -3,7 +3,7 @@ Algorithm `huffman_encoding` has dependencies:
 - `Tree`
 - `frequencies`
 
-`Doubly_linked_list` and `Tree` has corresponding explanations files.
+`Doubly_linked_list` and `Tree` have corresponding explanations files.
 
 Function `frequencies` takes `string` as argument, iterates over characters in `string`, stores them as keys in `chars_frqs` dict; values are number of occurrences. Time complexity is O(n), where `n` is len(`string`). Space complexity is O(n) in case every character is different.
 

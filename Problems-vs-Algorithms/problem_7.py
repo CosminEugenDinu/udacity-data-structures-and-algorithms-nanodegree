@@ -6,39 +6,37 @@ class RouteTrie:
         # Initialize the trie with an root node and a handler, this is the root path or home page node
         self.root = RouteTrieNode()
 
-    # def insert(self, path_list, handler, node=self.root):
     def insert(self, path_list, handler):
         # Similar to our previous example you will want to recursively add nodes
         # Make sure you assign the handler to only the leaf (deepest) node of this path
-        def _insert(path_list, handler, node):
-            path_item = path_list[0]
-            if len(path_list) == 1:
+        def _insert(path_list, curr_index, handler, node):
+            path_item = path_list[curr_index]
+            last_index = len(path_list) - 1
+
+            if curr_index == last_index:
                 leaf = node.insert(path_item)
                 leaf.handler = handler
                 return leaf
 
             next_node = node.insert(path_item)
-            _insert(path_list[1:], handler, next_node)
+            _insert(path_list, curr_index+1, handler, next_node)
         
         node = self.root
-        _insert(path_list, handler, node)
+        _insert(path_list, 0, handler, node)
 
-    # def find(self, path_list, node=self.root):
     def find(self, path_list):
         # Starting at the root, navigate the Trie to find a match for this path
         # Return the handler for a match, or None for no match
-        def _find(path_list, node):
-            path_item = path_list[0] # assumes at least one path_item
+        def _find(path_list, curr_index, node):
+            path_item = path_list[curr_index] 
             next_node = node.children.get(path_item)
             if not next_node:
                 return None
-            if len(path_list) == 1:
+            if curr_index == len(path_list)-1:
                 return next_node.handler
-            return _find(path_list[1:], next_node)
+            return _find(path_list, curr_index+1, next_node)
         
-        node = self.root
-        return _find(path_list, node)
-
+        return _find(path_list, 0, self.root)
 
 # A RouteTrieNode will be similar to our autocomplete TrieNode... with one additional element, a handler.
 class RouteTrieNode:

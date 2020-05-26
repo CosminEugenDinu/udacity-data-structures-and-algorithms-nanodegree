@@ -11,23 +11,24 @@ def sqrt(number):
     """
     if number == 0 or number == 1:
         return number
-    guess = number / 2
+    half_num = number / 2
 
-    def guess_root(number, guess):
-        root = (guess + number / guess) / 2
-        # print("root", root)
+    def find_root(number, half_num):
+
+        root = (half_num + number / half_num) / 2
         square = root*root
         if round(square) == number:
             return root
         elif round(square) > number:
-            return guess_root(number, root)
+            return find_root(number, root)
         else:
             grater = root + 1
             if round(grater*grater) > number:
                 return root
 
     
-    root = guess_root(number, guess)
+    root = find_root(number, half_num)
+
     return root
 
 
